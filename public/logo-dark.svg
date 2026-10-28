@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFB020"/>
+      <stop offset=".55" stop-color="#FF6B5A"/>
+      <stop offset="1" stop-color="#8E1B45"/>
+    </linearGradient>
+    <linearGradient id="boltFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C2384A"/>
+      <stop offset="1" stop-color="#5A1240"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="25" fill="rgba(142,27,69,.06)"/>
+  <circle cx="32" cy="32" r="25" fill="none" stroke="url(#ring)" stroke-width="4.5"
+          stroke-linecap="round" stroke-dasharray="122 35" transform="rotate(-70 32 32)"/>
+  <path d="M53.5 21.5 L59 16 L60 25 Z" fill="#FF6B5A"/>
+  <path d="M36 11 L21 35 H31 L27 53 L44 27 H34 Z" fill="url(#boltFill)" stroke="#FFB020" stroke-width="1.2" stroke-linejoin="round"/>
+  <g stroke="#FFB020" stroke-width="2" stroke-linecap="round">
+    <path d="M9 30 H4"/><path d="M11 18 L7 15"/><path d="M11 44 L7 47"/>
+  </g>
+</svg>
