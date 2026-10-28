@@ -12,7 +12,7 @@ export interface Group
     joinCode?: string
     members: Member[]
 }
-export type JoinCodeInput = { mode: "random" } | { mode: "custom", code: string }
+export type JoinCodeInput =  { mode: "custom", code: string }|{ mode: "random" } 
 
 export interface RenameGroupInput
 {
