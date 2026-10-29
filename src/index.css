@@ -21,114 +21,38 @@
   --color-fg: #FFFFFF;
   --color-fg-soft: #FFE6EC;
   --color-fg-muted: #F8D3DE;
+
+  /* copper paper palette (login page, mockup "B טיפוגרפי") */
+  --font-heebo: "Heebo", "Rubik", "Segoe UI", Arial, sans-serif;
+  --color-bone: #E9E4DA;
+  --color-paper: #F4F0E8;
+  --color-slate: #23303A;
+  --color-slate-soft: #4B5862;
+  --color-slate-muted: #7A848B;
+  --color-rule: #B9B1A4;
+  --color-copper: #C46A2E;
+  --color-blaze: #FF5A1F;
+  --color-saffron: #FFB43A;
 }
 
 @layer base {
+  /* the whole app sits on blueprint paper (mockup "T · שרטוט"): bone background with a fine grid */
   body {
     min-height: 100vh;
-    color: var(--color-fg);
-    background-color: var(--color-ember);
+    font-family: var(--font-heebo);
+    color: var(--color-slate);
+    background-color: var(--color-bone);
     background-image:
-      radial-gradient(circle 34vw at 88% 6%, rgb(255 138 46 / 0.4), transparent),
-      radial-gradient(circle 46vw at 8% 92%, rgb(58 12 74 / 0.5), transparent),
-      linear-gradient(200deg, #A82A45 0%, #8E1B45 48%, #5A1240 100%);
+      linear-gradient(rgb(35 48 58 / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(35 48 58 / 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
     background-attachment: fixed;
   }
 
-  /* soft, uneven light streaks (tapered ellipses on a tilted layer) that flash from time to time */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: -20%;
-    pointer-events: none;
-    z-index: 0;
-    transform: rotate(-16deg);
-    background-image:
-      radial-gradient(ellipse 14rem 2px at 22% 19%, rgb(255 226 160 / 0.7), rgb(255 226 160 / 0.2) 45%, transparent 72%),
-      radial-gradient(ellipse 6rem 1px at 26% 19.1%, rgb(255 255 255 / 0.9), transparent 70%),
-      radial-gradient(ellipse 20rem 5px at 33% 15%, rgb(255 170 140 / 0.35), rgb(255 170 140 / 0.1) 50%, transparent 72%),
-      radial-gradient(ellipse 9rem 1.5px at 14% 23%, rgb(255 255 255 / 0.6), transparent 70%),
-      radial-gradient(ellipse 16rem 3px at 30% 24.5%, rgb(255 200 120 / 0.45), transparent 72%),
-      radial-gradient(ellipse 5rem 1px at 19% 26%, rgb(255 226 160 / 0.7), transparent 70%),
-      radial-gradient(ellipse 19rem 3px at 24% 30%, rgb(255 226 160 / 0.85), rgb(255 226 160 / 0.3) 45%, transparent 72%),
-      radial-gradient(ellipse 8rem 1.5px at 30% 30.1%, rgb(255 255 255 / 0.95), transparent 70%),
-      radial-gradient(ellipse 11rem 2px at 15% 33%, rgb(255 226 160 / 0.45), transparent 70%),
-      radial-gradient(ellipse 26rem 7px at 68% 70%, rgb(255 170 140 / 0.45), rgb(255 170 140 / 0.12) 50%, transparent 72%),
-      radial-gradient(ellipse 13rem 1.5px at 62% 69.8%, rgb(255 255 255 / 0.85), transparent 70%),
-      radial-gradient(ellipse 7rem 1px at 76% 72.5%, rgb(255 230 200 / 0.7), transparent 70%),
-      radial-gradient(ellipse 34rem 22px at 48% 52%, rgb(255 120 60 / 0.16), transparent 70%);
-    opacity: 0.35;
-    animation: streak-flash 7s ease-out infinite;
-  }
-
-  /* three star-shaped flares that burst at different times */
-  body::after,
-  #root::before,
-  #root::after {
-    content: "";
-    position: fixed;
-    width: 64px;
-    height: 64px;
-    pointer-events: none;
-    opacity: 0;
-    background:
-      radial-gradient(circle, #fff 0 2px, rgb(255 255 255 / 0.7) 3.5px, rgb(255 255 255 / 0.15) 9px, transparent 18px),
-      linear-gradient(90deg, transparent, #fff 50%, transparent) center / 100% 2px no-repeat,
-      linear-gradient(transparent, #fff 50%, transparent) center / 2px 100% no-repeat;
-    filter: drop-shadow(0 0 6px rgb(255 255 255 / 0.9));
-  }
-  body::after {
-    top: 14%;
-    left: 18%;
-    z-index: 0;
-    animation: flare 6s ease-out 0.8s infinite;
-  }
-  #root {
-    position: relative;
-    z-index: 1;
-  }
-  #root::before {
-    top: 32%;
-    right: 12%;
-    z-index: -1;
-    filter: drop-shadow(0 0 8px rgb(255 170 140 / 1));
-    animation: flare 7.5s ease-out 3.2s infinite;
-  }
-  #root::after {
-    bottom: 16%;
-    left: 44%;
-    z-index: -1;
-    filter: drop-shadow(0 0 8px rgb(255 226 160 / 1));
-    animation: flare 8.5s ease-out 5.6s infinite;
-  }
-
   ::selection {
-    background: var(--color-ink);
-    color: white;
+    background: var(--color-slate);
+    color: var(--color-paper);
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    body::before, body::after, #root::before, #root::after { animation: none; }
-    body::after, #root::before, #root::after { opacity: 0.6; }
-  }
-}
-
-/* a quick burst: appears, flares bright and big, and fades out */
-@keyframes flare {
-  0%   { opacity: 0; transform: scale(0.2) rotate(0deg); }
-  4%   { opacity: 1; transform: scale(1.15) rotate(20deg); }
-  9%   { opacity: 0.85; transform: scale(0.9) rotate(35deg); }
-  18%  { opacity: 0; transform: scale(0.5) rotate(45deg); }
-  100% { opacity: 0; transform: scale(0.2) rotate(45deg); }
-}
-
-/* streaks rest dim, then flash for a moment, with a small after-flicker */
-@keyframes streak-flash {
-  0%, 100% { opacity: 0.3; }
-  2%  { opacity: 1; }
-  5%  { opacity: 0.45; }
-  7%  { opacity: 0.85; }
-  14% { opacity: 0.3; }
 }
 
 @utility bg-energy {
@@ -202,4 +126,315 @@
   background-image: linear-gradient(to left, rgb(46 8 40 / 0.9) 0%, rgb(110 20 66 / 0.85) 45%, rgb(214 92 58 / 0.8) 100%);
   border: 1px solid rgb(255 255 255 / 0.18);
   backdrop-filter: blur(10px);
+}
+
+/* ===== app pages – blueprint paper (mockup "T · שרטוט") ===== */
+
+/* a sheet of paper: cards, panels, the sidebar plate */
+@utility paper-card {
+  background-color: var(--color-paper);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 18px 40px -28px rgb(255 90 31 / 0.4), 0 2px 6px -4px rgb(35 48 58 / 0.25);
+}
+
+/* small engineering label above a title ("DYN · לוח בקרה") */
+@utility spec {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--color-slate-muted);
+}
+
+/* field like on the login page: light fill and an ink underline */
+@utility field-line {
+  width: 100%;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom: 1px solid var(--color-slate);
+  background-color: rgb(255 255 255 / 0.6);
+  padding: 0.65rem 0.85rem;
+  font-size: 15px;
+  color: var(--color-slate);
+  outline: none;
+  transition: border-color 0.15s, background-color 0.15s;
+  &::placeholder { color: var(--color-slate-muted); }
+  &:focus { border-color: var(--color-blaze); background-color: rgb(255 255 255 / 0.85); }
+  &:disabled { cursor: not-allowed; opacity: 0.45; }
+}
+
+/* buttons: copper (main action), ink, outline and danger */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  padding: 0.6rem 1.15rem;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.15s, background-color 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
+  &:active { transform: scale(0.97); }
+  &:disabled { opacity: 0.6; cursor: default; }
+}
+@utility btn-spark {
+  color: white;
+  background-image: linear-gradient(115deg, #C46A2E 0%, #FF5A1F 55%, #FFB43A 100%);
+  box-shadow: 0 10px 22px -12px rgb(255 90 31 / 0.75);
+  &:hover { filter: brightness(1.05); }
+}
+@utility btn-ink {
+  color: var(--color-paper);
+  background-color: var(--color-slate);
+  &:hover { background-color: #34444F; }
+}
+@utility btn-line {
+  color: var(--color-slate-soft);
+  border-color: var(--color-rule);
+  background-color: transparent;
+  font-weight: 500;
+  &:hover { color: var(--color-slate); border-color: var(--color-slate-soft); }
+}
+@utility btn-danger {
+  color: #9B3B2A;
+  border-color: #D7A99E;
+  background-color: transparent;
+  font-weight: 500;
+  &:hover { background-color: rgb(155 59 42 / 0.07); }
+}
+
+/* status pills: done, waiting, missing */
+@utility pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: var(--radius-md);
+  padding: 0.25rem 0.65rem;
+  font-size: 12px;
+  font-weight: 500;
+}
+@utility pill-ok { background-color: #E1EADF; color: #4F7D62; }
+@utility pill-warn { background-color: #F2E7CF; color: #96671A; }
+@utility pill-miss { background-color: #F3E3D6; color: var(--color-copper); }
+
+/* thin tag with a border ("קבוצתי", "דירוג 1–10") */
+@utility tag {
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  padding: 0.05rem 0.45rem;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--color-slate-soft);
+}
+
+/* error box on paper */
+@utility alert {
+  border: 1px solid rgb(255 90 31 / 0.4);
+  background-color: rgb(255 90 31 / 0.08);
+  border-radius: var(--radius-lg);
+  padding: 0.6rem 1rem;
+  font-size: 14px;
+  color: #9A2A12;
+}
+
+/* blueprint ruler: a line with small end ticks (sidebar dividers) */
+@utility rule-line {
+  position: relative;
+  height: 1px;
+  background-image: linear-gradient(to left, var(--color-rule), var(--color-blaze) 50%, var(--color-rule));
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    width: 1px;
+    height: 7px;
+    background-color: var(--color-rule);
+  }
+  &::before { right: 0; }
+  &::after { left: 0; }
+}
+
+/* ===== warm blueprint (mockup "V · שרטוט חם") ===== */
+
+/* fixed layer behind the app pages: two soft orange patches that breathe,
+   and rings that spread slowly from the energy source near the top */
+@utility app-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+@utility warm-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(10px);
+  animation: breathe 9s ease-in-out infinite;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+@utility warm-glow-1 {
+  width: 620px;
+  height: 620px;
+  left: -180px;
+  top: -220px;
+  background: radial-gradient(circle, rgb(255 90 31 / 0.16), transparent 65%);
+}
+@utility warm-glow-2 {
+  width: 540px;
+  height: 540px;
+  right: 22%;
+  bottom: -280px;
+  background: radial-gradient(circle, rgb(255 180 58 / 0.2), transparent 65%);
+  animation-duration: 11s;
+  animation-delay: -4s;
+}
+@utility warm-wave {
+  position: absolute;
+  left: 30%;
+  top: 22%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  border: 1.5px solid rgb(255 90 31 / 0.28);
+  box-shadow: 0 0 30px 6px rgb(255 180 58 / 0.1), inset 0 0 30px 6px rgb(255 180 58 / 0.08);
+  animation: paper-wave 20s cubic-bezier(0.22, 0.45, 0.35, 1) infinite;
+  @media (prefers-reduced-motion: reduce) { display: none; }
+}
+
+@keyframes breathe {
+  50% { transform: translate(40px, 30px) scale(1.15); opacity: 0.7; }
+}
+
+/* a status lamp that pulses softly while the challenge is active */
+@keyframes led-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(255 90 31 / 0.45); }
+  50% { box-shadow: 0 0 0 6px rgb(255 90 31 / 0); }
+}
+
+/* small blueprint note with a formula from the world of electricity (like the Faraday note on the login page) */
+@utility sci-note {
+  border-left: 2px solid var(--color-blaze);
+  padding-left: 0.75rem;
+  text-align: left;
+  color: var(--color-slate);
+}
+
+/* ===== login page – copper paper (mockup "B טיפוגרפי") ===== */
+
+/* desktop login (xl and up): the whole composition is drawn on a 1920x1280 (3:2) canvas and scales with
+   the screen, so a laptop shows the same proportions. --u is one pixel of that canvas; spacing, radius and
+   text sizes are rebuilt on it, and small text never goes below a readable size.
+   The form is drawn at 800 tall and scaled by 1.25 (--k on the form: it applies login-fit again);
+   its gap from the right (--form-gap) is its gap from the top and bottom plus two grid squares.
+   The rotor reaches down to about 4/5 of the page height */
+@utility login-fit {
+  --u: calc(min(100vw / 1920, 100vh / 1280) * var(--k, 1));
+  --form-gap: calc((100vh - var(--u) * 1000) / 2 + var(--u) * 96);
+  --rotor-c: calc(var(--u) * 200);
+  --glow-size: calc(var(--u) * 1512);
+  --spacing: calc(var(--u) * 4);
+  --radius-lg: calc(var(--u) * 8);
+  --radius-xl: calc(var(--u) * 12);
+  --radius-2xl: calc(var(--u) * 16);
+  --radius-3xl: calc(var(--u) * 24);
+  --text-sm: max(calc(var(--u) * 14), 11px);
+  --text-base: max(calc(var(--u) * 16), 12px);
+  --text-lg: max(calc(var(--u) * 18), 13px);
+  --text-xl: max(calc(var(--u) * 20), 14px);
+}
+
+/* full-screen paper layer that covers the app's ember background
+   (--u is 1px below xl, so the grid squares stay 48px there) */
+@utility bg-paper-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--color-bone);
+  background-image:
+    linear-gradient(rgb(35 48 58 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(35 48 58 / 0.07) 1px, transparent 1px);
+  background-size: calc(var(--u, 1px) * 48) calc(var(--u, 1px) * 48);
+}
+
+/* soft glow + slow waves that come out of the rotor in the corner */
+@utility paper-glow {
+  position: absolute;
+  left: var(--rotor-c, 140px);
+  top: var(--rotor-c, 140px);
+  width: var(--glow-size, 1000px);
+  height: var(--glow-size, 1000px);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgb(255 150 60 / 0.16), rgb(255 90 31 / 0.05) 45%, transparent 68%);
+}
+
+@utility paper-wave {
+  position: absolute;
+  left: var(--rotor-c, 140px);
+  top: var(--rotor-c, 140px);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  border: 1.5px solid rgb(255 90 31 / 0.32);
+  box-shadow: 0 0 34px 8px rgb(255 180 58 / 0.14), inset 0 0 34px 8px rgb(255 180 58 / 0.11);
+  animation: paper-wave 20s cubic-bezier(0.22, 0.45, 0.35, 1) infinite;
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
+}
+
+@keyframes paper-wave {
+  0% { width: 0; height: 0; opacity: 0; }
+  15% { opacity: 1; }
+  100% { width: calc(var(--u, 1px) * 3000); height: calc(var(--u, 1px) * 3000); opacity: 0; }
+}
+
+@utility bg-spark {
+  background-image: linear-gradient(115deg, #C46A2E 0%, #FF5A1F 55%, #FFB43A 100%);
+}
+
+@utility text-spark {
+  background-image: linear-gradient(115deg, #C46A2E 0%, #FF5A1F 55%, #FFB43A 100%);
+  background-clip: text;
+  color: transparent;
+}
+
+/* outline-only letters: the #dynamo-outline SVG filter (in LoginPage) traces the whole letter shape,
+   so overlapping parts of a letter (like the ע in Heebo) don't show crossing lines */
+@utility text-outline {
+  color: var(--color-slate);
+  filter: url(#dynamo-outline);
+}
+
+/* small copper corner marks on a card */
+@utility corner-marks {
+  position: relative;
+  box-shadow: 0 24px 50px -28px rgb(255 90 31 / 0.55), inset 0 2px 0 rgb(255 255 255 / 0.6);
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--color-blaze);
+    border-radius: 3px;
+  }
+  &::before {
+    top: -1px;
+    right: -1px;
+    border-left: 0;
+    border-bottom: 0;
+  }
+  &::after {
+    bottom: -1px;
+    left: -1px;
+    border-right: 0;
+    border-top: 0;
+  }
 }

@@ -24,9 +24,9 @@ export function TransferManagerForm({ group }: { group: Group }) {
 
     return <>
 
-        <form onSubmit={handleSubmit(onsubmit)}>
-            <label>העברת ניהול
-                <select {...register("userId", {
+        <form onSubmit={handleSubmit(onsubmit)} className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-3">
+            <label className="flex flex-col gap-2 text-sm text-slate-soft"><span><i className="me-2 text-xs not-italic tracking-[1px] text-blaze">03</i>העברת ניהול</span>
+                <select className="field-line cursor-pointer [&_option]:bg-paper" {...register("userId", {
                     required: "לא בחרת חבר"
                 })}>
                     {
@@ -34,10 +34,10 @@ export function TransferManagerForm({ group }: { group: Group }) {
                             !m.isManager && <option key={m.id} value={m.id}>{m.displayName}</option>)
                     }
                 </select>
-                {errors.userId && <p>{errors.userId.message}</p>}
-                {TransferMutation.isError&&<p>{getErrorMessage(TransferMutation.error)}</p>}
+                {errors.userId && <p className="text-sm text-[#B4321A]">{errors.userId.message}</p>}
+                {TransferMutation.isError&&<p className="alert">{getErrorMessage(TransferMutation.error)}</p>}
             </label>
-            <button type="submit" disabled={TransferMutation.isPending}>אישור </button>
+            <button type="submit" className="btn btn-ink" disabled={TransferMutation.isPending}>אישור </button>
         </form>
     </>
 }

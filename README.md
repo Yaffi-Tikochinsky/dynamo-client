@@ -1,32 +1,147 @@
-# React + TypeScript + Vite
+# דינמו – מעקב אתגרים קבוצתי 🔥
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+**מעגל. עשייה. אנרגיה.**
 
-Currently, two official plugins are available:
+דינמו הוא אתר שבו קבוצת חברים מציבה לעצמה אתגרים, מדווחת עליהם כל יום ורואה דירוג, גרף התקדמות ומנצחים.
+לכל אתגר יש ניקוד, דירוג, תאריך סיום ופרס משלו.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+זהו צד הלקוח (React). השרת נמצא בריפו נפרד: [dynamo-server](https://github.com/Yaffi-Tikochinsky/dynamo-server).
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## מה אפשר לעשות באתר
 
-## Expanding the Oxlint configuration
+### הרשמה והתחברות
+- התחברות עם אימייל וסיסמה.
+- בהרשמה בוחרים שם תצוגה ואווטאר (אימוג'י), ואז:
+  - **מצטרפים לקבוצה קיימת** עם קוד הצטרפות, או
+  - **פותחים קבוצה חדשה** ונעשים המנהלים שלה.
+- כל משתמש שייך לקבוצה אחת בלבד.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+### שני סוגי משתמשים
+| | חבר קבוצה | מנהל קבוצה |
+| --- | --- | --- |
+| צפייה באתגרים, הצטרפות ודיווח | ✅ | ✅ |
+| יצירת אתגרים ועריכת האתגרים שלו | ✅ | ✅ |
+| שינוי שם הקבוצה | | ✅ |
+| שינוי קוד ההצטרפות | | ✅ |
+| העברת הניהול לחבר אחר | | ✅ |
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+### אתגרים
+- **רשימת אתגרים** של הקבוצה, עם:
+  - חיפוש לפי שם
+  - סינון לפי סטטוס (פעיל / עתידי / הסתיים), סולם דירוג, אישי או קבוצתי, ו"רק האתגרים שלי"
+  - מיון לפי תאריך סיום, תאריך התחלה, מספר משתתפים או שם – בסדר עולה או יורד
+- **יצירה ועריכה** של אתגר: שם, תיאור, סולם דירוג (כן/לא או 1–10), אישי/קבוצתי, תאריכי התחלה וסיום, פרס, וחלון הצטרפות.
+- **הצטרפות ועזיבה** של אתגר.
+- **חידוש אתגר** שהסתיים – יוצר אתגר חדש על בסיס הקודם, עם תאריכים מוצעים.
+
+### דיווח יומי ותוצאות
+- דיווח על כל יום באתגר, כולל השלמה של ימים שהוחמצו.
+- **טבלת דירוג** של המשתתפים.
+- **גרף התקדמות** – הניקוד המצטבר של כל משתתף לאורך האתגר.
+- התוצאות נפתחות רק למשתתפים שהשלימו את כל הדיווחים (לפני סיום האתגר).
+- התאריכים מוצגים גם בתאריך עברי.
+
+---
+
+## טכנולוגיות
+
+| תחום | כלי |
+| --- | --- |
+| ספרייה | React 19 + TypeScript |
+| בנייה והרצה | Vite |
+| ניתוב | React Router |
+| טפסים | React Hook Form + Zod |
+| תקשורת עם השרת | Axios + React Query (TanStack Query) |
+| ניהול מצב ההתחברות | Context API |
+| גרפים | Recharts |
+| עיצוב | Tailwind CSS 4, תמיכה מלאה בעברית (RTL), גופן Heebo |
+| תאריך עברי | ‎@hebcal/hdate |
+
+---
+
+## עיצוב – "שרטוט חם"
+
+האתר נראה כמו שרטוט הנדסי על נייר: רקע בצבע עצם עם רשת משבצות, דיו כחלחל-כהה ומבטאים בנחושת וכתום.
+הרעיון: הקבוצה היא "דינמו", מחולל שהופך תנועה יומיומית לאנרגיה.
+
+- **דפי הכניסה וההרשמה** – רוטור של דינמו חתוך בפינה, הסלוגן "מעגל. עשייה. אנרגיה." חוצה אותו, וגלים רכים יוצאים ממנו.
+  כל הקומפוזיציה מצוירת על קנבס של 1920×1280 ומתכווצת לפי המסך (`login-fit` ב-`index.css`), כך שהפרופורציות זהות בכל מסך מחשב.
+- **שאר הדפים** – סרגל צד מנייר עם ניווט ממוספר, כרטיסים עם "פינות נחושת" לאתגרים שהצטרפתם אליהם, שדות עם קו תחתון ממוספרים 01, 02...
+- **תנועה עדינה** – שני כתמים כתומים שנושמים ברקע, טבעות שמתפשטות לאט, ונורית "פעיל" שפועמת. מי שביקש במחשב פחות תנועה – לא יראה אנימציות.
+- **הערות שרטוט** – בכל דף הערה קטנה עם נוסחה מעולם החשמל (חוק פאראדיי, חוק אוהם, חוק קירכהוף...).
+- **צבעי המשתתפים** בגרפים – עשרה גוונים "מעושנים" שהשרת מחלק לכל משתמש, ונראים טוב על הנייר.
+
+מחלקות העיצוב המשותפות (`paper-card`, `btn-spark`, `field-line`, `pill-ok` ועוד) מוגדרות ב-`src/index.css`.
+
+---
+
+## מבנה התיקיות
+
+```
+src/
+  api/          פונקציות שפונות לשרת (התחברות, אתגרים, קבוצה, נתונים כלליים)
+  components/   רכיבים: כרטיס אתגר, טופס אתגר, טופס דיווח, תוצאות, פאנל מנהל
+    forms/      טפסי המנהל: קוד הצטרפות, שינוי שם, העברת ניהול
+  context/      AuthContext – המשתמש המחובר והטוקן
+  pages/        מסכי האתר
+  routes/       הגדרת הנתיבים, Layout, והגנה על דפים שדורשים התחברות
+  types/        טיפוסי TypeScript שתואמים ל-API של השרת
+  utils/        כלי עזר: הודעות שגיאה, תוויות בעברית, תאריך עברי, חישובי התקדמות
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+### הדפים
+
+| נתיב | דף | דורש התחברות |
+| --- | --- | --- |
+| `/login` | התחברות | |
+| `/register` | הרשמה | |
+| `/challenges` | רשימת האתגרים | ✅ |
+| `/challenges/new` | יצירת אתגר חדש | ✅ |
+| `/challenges/:id` | דף אתגר – פעולות, דיווח ותוצאות | ✅ |
+| `/challenges/:id/edit` | עריכת אתגר | ✅ |
+| `/group` | דף הקבוצה (ופאנל מנהל) | ✅ |
+
+---
+
+## הרצה מקומית
+
+צריך Node.js 22 ושרת שרץ (מקומית או בענן).
+
+1. התקנת החבילות:
+   ```bash
+   npm install
+   ```
+2. יצירת קובץ `.env` לפי `.env.example`, עם כתובת השרת:
+   ```
+   VITE_API_URL=http://localhost:3000/api
+   ```
+3. הרצה:
+   ```bash
+   npm run dev
+   ```
+
+### פקודות נוספות
+
+| פקודה | מה היא עושה |
+| --- | --- |
+| `npm run build` | בדיקת טיפוסים ובניית גרסה לפרודקשן לתיקייה `dist` |
+| `npm run preview` | הצגת הגרסה הבנויה |
+| `npm run lint` | בדיקת קוד עם oxlint |
+
+---
+
+## העלאה לענן
+
+האתר מועלה ל-[Render](https://render.com) כאתר סטטי, לפי הקובץ `render.yaml`:
+- פקודת בנייה: `npm ci && npm run build`
+- כל הנתיבים מופנים ל-`index.html`, כדי שרענון דף לא יחזיר שגיאת 404.
+- משתנה הסביבה `VITE_API_URL` מצביע על השרת בענן: `https://challenges-backend.onrender.com/api`
+
+---
+
+## משתמשי הדגמה
+
+במסד הנתונים יש קבוצת הדגמה בשם **"חברות בנפש✨"**, עם המשתמשות:
+`rachely@example.com`, `chani@example.com`, `brachy@example.com`, `miri@example.com`.
