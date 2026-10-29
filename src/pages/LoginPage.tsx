@@ -50,7 +50,7 @@ function LoginPage() {
             <div className="paper-wave"></div>
             <div className="paper-wave [animation-delay:-6.67s]"></div>
             <div className="paper-wave [animation-delay:-13.33s]"></div>
-            <img src="/login-rotor.svg" alt="" className="absolute -top-[260px] -left-[260px] size-[760px] max-w-none xl:-top-163.25 xl:-left-163.25 xl:size-426.5" />
+            <img src="/login-rotor.svg" alt="" className="absolute -top-[260px] -left-[260px] size-[760px] max-w-none xl:-top-163.25 xl:-left-163.25 xl:size-426.5 saturate-[.8]" />
 
             {/* blueprint note: Faraday's law, the principle a dynamo works by */}
             <div className="absolute bottom-7 left-8 hidden border-l-2 border-blaze pl-3 text-left lg:block">
@@ -89,7 +89,7 @@ function LoginPage() {
                 {errors.password && <p className={errorClass}>{errors.password.message}</p>}
                 {mutation.isError && <p className="rounded-lg border border-blaze/40 bg-blaze/10 px-4 py-2.5 text-sm text-[#9A2A12] xl:px-5 xl:py-3 xl:text-lg">{getErrorMessage(mutation.error)}</p>}
                 <button type="submit" disabled={mutation.isPending}
-                    className="bg-spark rounded-xl py-3.5 text-base font-bold text-white shadow-[0_10px_24px_-10px_rgb(255_90_31/0.75)] transition hover:brightness-105 active:scale-[0.98] disabled:opacity-60 xl:rounded-2xl xl:py-5 xl:text-xl">
+                    className="bg-spark rounded-xl py-3.5 text-base font-bold text-white shadow-[0_10px_24px_-10px_rgb(255_90_31/0.5)] transition hover:brightness-105 active:scale-[0.98] disabled:opacity-60 xl:rounded-2xl xl:py-5 xl:text-xl">
                     {mutation.isPending ? "מתחברים..." : "כניסה למעגל ⚡"}
                 </button>
                 <Link to="/register" className="text-sm text-slate-muted transition hover:text-slate xl:text-lg">אין לך חשבון? <span className="font-bold text-blaze">להרשמה</span></Link>

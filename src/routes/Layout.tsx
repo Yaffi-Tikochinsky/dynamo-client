@@ -75,7 +75,7 @@ function Layout() {
                         <div className="truncate text-xs text-slate-muted">{user?.group.name}</div>
                     </div>
                 </div>
-                <button onClick={logout} className="btn btn-line mt-3 w-full py-2 text-sm">
+                <button onClick={logout} className="btn mt-3 w-full bg-[#C47D55] py-2 text-sm text-paper hover:bg-[#B56F48]">
                     ⎋ התנתקות
                 </button>
             </div>
