@@ -149,6 +149,6 @@ src/
 מנהלת: `rachely@example.com`
 משתמשות:, `chani@example.com`, `brachy@example.com`, `miri@example.com`.
 
-סיסמה למשתמשי ההדגמה - Demo1234
+סיסמה למשתמשי ההדגמה -Ad76Tiko
 
 
