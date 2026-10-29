@@ -143,5 +143,12 @@ src/
 
 ## משתמשי הדגמה
 
-במסד הנתונים יש קבוצת הדגמה בשם **"חברות בנפש✨"**, עם המשתמשות:
-`rachely@example.com`, `chani@example.com`, `brachy@example.com`, `miri@example.com`.
+
+במסד הנתונים יש קבוצת הדגמה בשם **"חברות בנפש✨"**,
+עם המשתמשות:
+מנהלת: `rachely@example.com`
+משתמשות:, `chani@example.com`, `brachy@example.com`, `miri@example.com`.
+
+סיסמה למשתמשי ההדגמה - Demo1234
+
+
